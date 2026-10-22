@@ -7,16 +7,20 @@
     "hmr": "NODE_ENV=development node hmr.ts",
     "start": "NODE_ENV=production node --import remix/node-tsx server.ts",
     "test": "NODE_ENV=test remix test",
-    "typecheck": "tsc --noEmit"
-  },
-  "engines": {
-    "node": ">=24.3.0"
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "format": "oxfmt"
   },
   "dependencies": {
     "remix": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "latest",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=24.3.0"
   }
 }

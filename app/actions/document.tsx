@@ -1,21 +1,21 @@
-import type { Handle, RemixNode } from 'remix/component'
-import { css } from 'remix/component'
-import { ImportMap } from 'remix/component/server'
+import type { Handle, RemixNode } from "remix/component";
+import { css } from "remix/component";
+import { ImportMap } from "remix/component/server";
 
-import { scriptEntry } from '../assets.ts'
+import { scriptEntry } from "../assets.ts";
 
 export interface DocumentProps {
-  children?: RemixNode
-  head?: RemixNode
-  title?: string
+  children?: RemixNode;
+  head?: RemixNode;
+  title?: string;
 }
 
-const DEFAULT_TITLE = readAppDisplayName('Katherine.app')
+const DEFAULT_TITLE = readAppDisplayName("Katherine.app");
 
 export function Document(handle: Handle<DocumentProps>) {
   return () => {
-    let { children, head, title = DEFAULT_TITLE } = handle.props
-    let { href, importMap, preloads } = scriptEntry
+    let { children, head, title = DEFAULT_TITLE } = handle.props;
+    let { href, importMap, preloads } = scriptEntry;
 
     return (
       <html lang="en">
@@ -34,10 +34,10 @@ export function Document(handle: Handle<DocumentProps>) {
         </head>
         <body mix={css({ margin: 0 })}>{children}</body>
       </html>
-    )
-  }
+    );
+  };
 }
 
 function readAppDisplayName(value: string): string {
-  return value.startsWith('%%') ? 'Remix App' : decodeURIComponent(value)
+  return value.startsWith("%%") ? "Remix App" : decodeURIComponent(value);
 }
