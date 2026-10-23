@@ -3,6 +3,7 @@ import { createController } from "remix/router";
 import { assets } from "../assets.ts";
 import { routes } from "../routes.ts";
 import { HomePage } from "./home-page.tsx";
+import { PronounsPage } from "./pronouns.tsx";
 
 export default createController(routes, {
   actions: {
@@ -11,6 +12,9 @@ export default createController(routes, {
     },
     home(context) {
       return context.render(<HomePage />);
+    },
+    pronouns(context) {
+      return context.render(<PronounsPage />);
     },
     ip(context) {
       return new Response(context.request.headers.get("x-client-ip"));
