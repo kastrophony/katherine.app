@@ -10,11 +10,14 @@ const hmrProxyPort = process.env.HMR_PROXY_PORT
 const isHmr = process.env.REMIX_NODE_HMR === "1";
 
 const handler: FetchHandler = (request, client) => {
-  request.headers.set("x-client-ip", client.address);
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  const address = forwardedFor?.split(",").at(-1)?.trim() || client.address;
+
+  request.headers.set("x-client-ip", address);
   return router.fetch(request);
 };
 
-const server = http.createServer(createRequestListener(handler, { trustProxy: isHmr }));
+const server = http.createServer(createRequestListener(handler, { trustProxy: true }));
 
 server.listen(port, () => {
   if (isHmr) {
