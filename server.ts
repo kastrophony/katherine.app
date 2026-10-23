@@ -1,5 +1,5 @@
 import * as http from "node:http";
-import { createRequestListener } from "remix/node-fetch-server";
+import { createRequestListener, type FetchHandler } from "remix/node-fetch-server";
 
 import { router } from "./app/router.ts";
 
@@ -9,7 +9,12 @@ const hmrProxyPort = process.env.HMR_PROXY_PORT
   : null;
 const isHmr = process.env.REMIX_NODE_HMR === "1";
 
-const server = http.createServer(createRequestListener(router.fetch, { trustProxy: isHmr }));
+const handler: FetchHandler = (request, client) => {
+  request.headers.set("x-client-ip", client.address);
+  return router.fetch(request);
+};
+
+const server = http.createServer(createRequestListener(handler, { trustProxy: isHmr }));
 
 server.listen(port, () => {
   if (isHmr) {

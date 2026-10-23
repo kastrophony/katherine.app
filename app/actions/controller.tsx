@@ -12,5 +12,8 @@ export default createController(routes, {
     home(context) {
       return context.render(<HomePage />);
     },
+    ip(context) {
+      return new Response(context.request.headers.get("x-client-ip"));
+    },
   },
 });
