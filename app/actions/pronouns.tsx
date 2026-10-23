@@ -11,5 +11,5 @@ export function PronounsPage() {
 }
 
 function Head() {
-  return () => <link rel="icon" href="https://fav.farm/🏳️‍⚧️" />;
+  return () => <link rel="icon" type="image/png" sizes="32x32" href="/transflag-32x32.png" />;
 }
