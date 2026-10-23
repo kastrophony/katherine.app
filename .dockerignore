@@ -1,0 +1,9 @@
+**
+
+!/app/**
+!/public/**
+!/package.json
+!/pnpm-lock.yaml
+!/pnpm-workspace.yaml
+!/server.ts
+!/tsconfig.json
