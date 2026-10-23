@@ -10,7 +10,7 @@ export interface DocumentProps {
   title?: string;
 }
 
-const DEFAULT_TITLE = readAppDisplayName("Katherine.app");
+const DEFAULT_TITLE = readAppDisplayName("kat");
 
 export function Document(handle: Handle<DocumentProps>) {
   return () => {
