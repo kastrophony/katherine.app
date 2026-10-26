@@ -17,7 +17,11 @@ export default createController(routes, {
       return context.render(<PronounsPage />);
     },
     ip(context) {
-      return new Response(context.request.headers.get("x-client-ip"));
+      return new Response(context.request.headers.get("x-client-ip"), {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      });
     },
   },
 });
